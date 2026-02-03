@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đèn kéo quân</title>
+    <style>
+        body {
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            perspective: 1000px;
+        }
+
+        .den {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .mat {
+            position: absolute;
+            width: 160px;
+            height: 110px;
+            left: 70px;
+            top: 95px;
+        }
+
+        .mat img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            border: 2px solid white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="den" id="den">
+    <div class="mat" style="transform: rotateY(0deg) translateZ(220px);">
+        <img src="img1.jpg">
+    </div>
+    <div class="mat" style="transform: rotateY(60deg) translateZ(220px);">
+        <img src="img2.jpg">
+    </div>
+    <div class="mat" style="transform: rotateY(120deg) translateZ(220px);">
+        <img src="img3.jpg">
+    </div>
+    <div class="mat" style="transform: rotateY(180deg) translateZ(220px);">
+        <img src="img4.jpg">
+    </div>
+    <div class="mat" style="transform: rotateY(240deg) translateZ(220px);">
+        <img src="img5.jpg">
+    </div>
+    <div class="mat" style="transform: rotateY(300deg) translateZ(220px);">
+        <img src="img6.jpg">
+    </div>
+</div>
+
+<script>
+    let goc = 0;
+    let den = document.getElementById("den");
+    let quay;
+
+    function chay() {
+        quay = setInterval(() => {
+            goc++;
+            den.style.transform = `rotateY(${goc}deg)`;
+        }, 30);
+    }
+
+    function dung() {
+        clearInterval(quay);
+    }
+
+    chay();
+
+    document.querySelectorAll(".mat img").forEach(img => {
+        img.onmouseenter = dung;
+        img.onmouseleave = chay;
+    });
+</script>
+
+</body>
+</html>
